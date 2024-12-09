@@ -1,0 +1,123 @@
+  /*Frecuencia de uso: ¿Los miembros realmente usan más el servicio que los usuarios ocasionales?*/ 
+-- Frecuencia total de uso por tipo de usuario
+SELECT
+  member_casual,
+  COUNT(*) AS total_trips
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  member_casual
+ORDER BY
+  total_trips DESC; 
+
+-- Frecuencia de uso por día de la semana
+SELECT
+  day_of_week,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  day_of_week,
+  member_casual
+ORDER BY
+  day_of_week,
+  member_casual,
+  trip_count DESC; 
+  
+-- Frecuencia de uso por hora del día
+SELECT
+  time_of_day,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  time_of_day,
+  member_casual
+ORDER BY
+  time_of_day,
+  trip_count DESC; 
+  
+  /*Duración de los viajes: ¿La diferencia en duración puede estar relacionada con la actividad que realizan (trabajo vs. recreación)?*/ 
+-- Duración promedio por tipo de usuario
+SELECT
+  member_casual,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  member_casual
+ORDER BY
+  avg_ride_length DESC; 
+
+-- Duración promedio por día de la semana y tipo de usuario
+SELECT
+  day_of_week,
+  member_casual,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  day_of_week,
+  member_casual
+ORDER BY
+  day_of_week,
+  member_casual; 
+
+-- Duración promedio por hora del día y tipo de usuario
+SELECT
+  time_of_day,
+  member_casual,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  time_of_day,
+  member_casual
+ORDER BY
+  time_of_day,
+  avg_ride_length DESC; 
+  
+  /*Preferencias por tipo de bicicleta: ¿Por qué los casuales prefieren las bicicletas eléctricas?*/ 
+-- Proporción de uso de cada tipo de bicicleta por usuario
+SELECT
+  rideable_type,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  rideable_type,
+  member_casual
+ORDER BY
+  trip_count DESC; 
+
+-- Duración promedio de los viajes según el tipo de bicicleta
+SELECT
+  rideable_type,
+  member_casual,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  rideable_type,
+  member_casual
+ORDER BY
+  avg_ride_length DESC; 
+  
+-- Uso por día de la semana y tipo de bicicleta
+SELECT
+  rideable_type,
+  day_of_week,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  rideable_type,
+  day_of_week,
+  member_casual
+ORDER BY
+  day_of_week,
+  trip_count DESC;

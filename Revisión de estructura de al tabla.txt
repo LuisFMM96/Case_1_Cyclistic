@@ -1,0 +1,16 @@
+-- Ver las primeras filas de la tabla
+SELECT
+  *
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+LIMIT
+  10; 
+
+-- Verificar la estructura de la tabla
+SELECT
+  COLUMN_NAME,
+  DATA_TYPE
+FROM
+  case1gda.cyclistic_data.INFORMATION_SCHEMA.COLUMNS
+WHERE
+  TABLE_NAME = 'cyclistic_cleaned_data';

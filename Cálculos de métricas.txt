@@ -1,0 +1,92 @@
+  /*Frecuencia de uso por tipo de usuario, calcular el número total de viajes por tipo de usuario*/
+SELECT
+  member_casual,
+  COUNT(*) AS total_trips
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  member_casual
+ORDER BY
+  total_trips DESC; 
+  
+  /*Calcular la duración promedio de los viajes por tipo de usuario*/
+SELECT
+  member_casual,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  member_casual
+ORDER BY
+  avg_ride_length DESC; 
+  
+  /*Identificar los días más comunes para los viajes por ususario*/
+SELECT
+  day_of_week,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  day_of_week,
+  member_casual
+ORDER BY
+  day_of_week,
+  trip_count DESC; 
+  
+  /*Identificar las horas más comunes para los viajes por tipo de usuario*/
+SELECT
+  time_of_day,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  time_of_day,
+  member_casual
+ORDER BY
+  time_of_day,
+  trip_count DESC; 
+  
+  /*Calcular la proporción de uso de cada tipo de bicicleta por tipo de usuario*/
+SELECT
+  rideable_type,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  rideable_type,
+  member_casual
+ORDER BY
+  trip_count DESC; 
+  
+  /*Estaciones de inicio más populares*/
+SELECT
+  start_station_name,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  start_station_name,
+  member_casual
+ORDER BY
+  trip_count DESC
+LIMIT
+  10; 
+  
+  /*Estaciones de fin más populares*/
+SELECT
+  end_station_name,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  end_station_name,
+  member_casual
+ORDER BY
+  trip_count DESC
+LIMIT
+  10;

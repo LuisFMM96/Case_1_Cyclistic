@@ -1,0 +1,15 @@
+/*Con esto se Verifico el esquema de la tabla*/
+SELECT
+  column_name,
+  data_type
+FROM
+  `case1gda.cyclistic_data.INFORMATION_SCHEMA.COLUMNS`
+WHERE
+  table_name = 'rides_combined'; 
+
+/*Verificación de desconocidos*/
+SELECT
+  COUNTIF(start_station_name = 'Desconocido') AS unknown_start_stations,
+  COUNTIF(end_station_name = 'Desconocido') AS unknown_end_stations
+FROM
+  `case1gda.cyclistic_data.rides_combined`;

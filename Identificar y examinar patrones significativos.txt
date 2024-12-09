@@ -1,0 +1,96 @@
+  /*¿Por qué los miembros tienen una mayor frecuencia de uso que los usuarios casuales?*/
+SELECT
+  member_casual,
+  COUNT(*) AS total_trips,
+  AVG(ride_length) AS avg_ride_length
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  member_casual
+ORDER BY
+  total_trips DESC; 
+  
+  /*¿En qué días y horas del día los miembros y los usuarios casuales usan más las bicicletas?*/ 
+  
+-- Uso por día
+SELECT
+  day_of_week,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  day_of_week,
+  member_casual
+ORDER BY
+  day_of_week,
+  member_casual,
+  trip_count DESC; 
+  
+-- Uso por hora del día
+SELECT
+  time_of_day,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  time_of_day,
+  member_casual
+ORDER BY
+  time_of_day,
+  trip_count DESC; 
+  
+  
+  /*¿Qué estaciones son más populares para los usuarios casuales y cómo se correlacionan con su perfil de uso?*/ 
+  
+-- Estaciones de inicio más populares por usuarios casuales
+SELECT
+  start_station_name,
+  start_lat,
+  start_lng,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+WHERE
+  member_casual = 'casual'
+GROUP BY
+  start_station_name,
+  start_lat,
+  start_lng
+ORDER BY
+  trip_count DESC
+LIMIT
+  10; 
+  
+-- Estaciones de fin más populares por usuarios casuales
+SELECT
+  end_station_name,
+  end_lat,
+  end_lng,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+WHERE
+  member_casual = 'casual'
+GROUP BY
+  end_station_name,
+  end_lat,
+  end_lng
+ORDER BY
+  trip_count DESC
+LIMIT
+  10; 
+  
+  /*¿Cómo varía la elección de bicicletas (eléctricas vs. clásicas) entre los usuarios miembros y casuales?*/
+SELECT
+  rideable_type,
+  member_casual,
+  COUNT(*) AS trip_count
+FROM
+  `case1gda.cyclistic_data.cyclistic_cleaned_data`
+GROUP BY
+  rideable_type,
+  member_casual
+ORDER BY
+  trip_count DESC;
